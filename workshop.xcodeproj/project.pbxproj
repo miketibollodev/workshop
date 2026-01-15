@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4CADBCF72F198EA700A5D448 /* Styling in Frameworks */ = {isa = PBXBuildFile; productRef = 4CADBCF62F198EA700A5D448 /* Styling */; };
 		4CAF8C772F18416900488CFA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4CAF8C762F18416900488CFA /* README.md */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		4CADBCF22F198E8400A5D448 /* Packages */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Packages;
+			sourceTree = "<group>";
+		};
 		4CAF8C402F1837DE00488CFA /* workshop */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = workshop;
@@ -57,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CADBCF72F198EA700A5D448 /* Styling in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,13 +84,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4CADBCF52F198EA700A5D448 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4CAF8C352F1837DE00488CFA = {
 			isa = PBXGroup;
 			children = (
+				4CADBCF22F198E8400A5D448 /* Packages */,
 				4CAF8C762F18416900488CFA /* README.md */,
 				4CAF8C402F1837DE00488CFA /* workshop */,
 				4CAF8C4E2F1837E000488CFA /* workshopTests */,
 				4CAF8C582F1837E000488CFA /* workshopUITests */,
+				4CADBCF52F198EA700A5D448 /* Frameworks */,
 				4CAF8C3F2F1837DE00488CFA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -114,10 +130,12 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				4CADBCF22F198E8400A5D448 /* Packages */,
 				4CAF8C402F1837DE00488CFA /* workshop */,
 			);
 			name = workshop;
 			packageProductDependencies = (
+				4CADBCF62F198EA700A5D448 /* Styling */,
 			);
 			productName = workshop;
 			productReference = 4CAF8C3E2F1837DE00488CFA /* workshop.app */;
@@ -585,6 +603,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4CADBCF62F198EA700A5D448 /* Styling */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Styling;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4CAF8C362F1837DE00488CFA /* Project object */;
 }
