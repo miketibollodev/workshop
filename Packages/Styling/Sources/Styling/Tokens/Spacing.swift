@@ -10,7 +10,7 @@ import Foundation
 public struct Spacing {
     private static let base: CGFloat = 4
     
-    public let space0 = base * 0
+    public static let space0 = base * 0
     public static let space1 = base * 1
     public static let space2 = base * 2
     public static let space3 = base * 3
@@ -20,4 +20,9 @@ public struct Spacing {
     public static let space10 = base * 10
     public static let space12 = base * 12
     public static let space16 = base * 16
+    
+    public static let radius0 = base * 0
+    public static let radius3 = base * 3
+    public static let radius4 = base * 4
+    public static let radiusFull = 999
 }

@@ -8,25 +8,44 @@
 import SwiftUI
 
 public struct Coloring {
-    nonisolated(unsafe) public static let brand = Brand()
     nonisolated(unsafe) public static let surface = Surface()
-    nonisolated(unsafe) public static let text = Text()
+    nonisolated(unsafe) public static let text = TextColor()
+    nonisolated(unsafe) public static let border = Border()
 
     public init() {}
 }
 
-public struct Brand {
-    public let primary = Color("BrandPrimary", bundle: .module)
-    public let secondary = Color("BrandSecondary", bundle: .module)
-}
-
 public struct Surface {
-    public let primary = Color("SurfacePrimary", bundle: .module)
-    public let secondary = Color("SurfaceSecondary", bundle: .module)
+    public let primary = Color("Grey50", bundle: .module)
+    public let secondary = Color("Grey100", bundle: .module)
+    public let tertiary = Color("Grey500", bundle: .module)
+    public let inverse = Color("Grey000", bundle: .module)
+    public let brand = Color("Jade", bundle: .module)
+    public let brandSecondary = Color("Forest", bundle: .module)
+    public let brandTertiary = Color("Lost", bundle: .module)
+    public let brandLight = Color("Honeydew", bundle: .module)
+    public let danger = Color("Cherry", bundle: .module)
+    public let dangerSecondary = Color("Wine", bundle: .module)
+    public let dangerTertiary = Color("Rouge", bundle: .module)
+
 }
 
-public struct Text {
-    public let primary = Color("TextPrimary", bundle: .module)
-    public let secondary = Color("TextSecondary", bundle: .module)
-    public let tertiary = Color("TextTertiary", bundle: .module)
+public struct TextColor {
+    public let primary = Color("Grey900", bundle: .module)
+    public let secondary = Color("Grey500", bundle: .module)
+    public let tertiary = Color("Grey300", bundle: .module)
+    public let inverse = Color("Grey50", bundle: .module)
+    public let danger = Color("Cherry", bundle: .module)
+    public let brand = Color("Jade", bundle: .module)
+}
+
+public struct Border {
+    public let primary = Color("Grey300", bundle: .module)
+    public let secondary = Color("Grey500", bundle: .module)
+    public let brand = Color("Jade", bundle: .module)
+    public let brandSecondary = Color("Forest", bundle: .module)
+    public let brandTertiary = Color("Lost", bundle: .module)
+    public let danger = Color("Cherry", bundle: .module)
+    public let dangerSecondary = Color("Wine", bundle: .module)
+    public let dangerTertiary = Color("Rouge", bundle: .module)
 }

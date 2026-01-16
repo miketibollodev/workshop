@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4CADBCF72F198EA700A5D448 /* Styling in Frameworks */ = {isa = PBXBuildFile; productRef = 4CADBCF62F198EA700A5D448 /* Styling */; };
+		4CADBD282F19B41D00A5D448 /* Composing in Frameworks */ = {isa = PBXBuildFile; productRef = 4CADBD272F19B41D00A5D448 /* Composing */; };
 		4CAF8C772F18416900488CFA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4CAF8C762F18416900488CFA /* README.md */; };
 /* End PBXBuildFile section */
 
@@ -35,9 +36,22 @@
 		4CAF8C762F18416900488CFA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		4CADBD262F199D0100A5D448 /* Exceptions for "Packages" folder in "workshop" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Composing,
+			);
+			target = 4CAF8C3D2F1837DE00488CFA /* workshop */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		4CADBCF22F198E8400A5D448 /* Packages */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				4CADBD262F199D0100A5D448 /* Exceptions for "Packages" folder in "workshop" target */,
+			);
 			path = Packages;
 			sourceTree = "<group>";
 		};
@@ -63,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CADBD282F19B41D00A5D448 /* Composing in Frameworks */,
 				4CADBCF72F198EA700A5D448 /* Styling in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -136,6 +151,7 @@
 			name = workshop;
 			packageProductDependencies = (
 				4CADBCF62F198EA700A5D448 /* Styling */,
+				4CADBD272F19B41D00A5D448 /* Composing */,
 			);
 			productName = workshop;
 			productReference = 4CAF8C3E2F1837DE00488CFA /* workshop.app */;
@@ -608,6 +624,10 @@
 		4CADBCF62F198EA700A5D448 /* Styling */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Styling;
+		};
+		4CADBD272F19B41D00A5D448 /* Composing */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Composing;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
