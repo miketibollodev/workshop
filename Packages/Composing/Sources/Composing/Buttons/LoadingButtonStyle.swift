@@ -8,6 +8,11 @@
 import SwiftUI
 import Styling
 
+/// Button style that applies variant-based colors, borders, and press animations.
+///
+/// Used by `LoadingButton` to provide consistent styling. Each `ButtonVariant` maps
+/// to specific colors from the styling environment (background, text, border).
+/// Includes scale animation on press and opacity changes for disabled state.
 public struct LoadingButtonStyle: ButtonStyle {
         
     @Environment(\.isEnabled) private var isEnabled

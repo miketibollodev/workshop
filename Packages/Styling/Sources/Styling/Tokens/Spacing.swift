@@ -7,6 +7,9 @@
 
 import Foundation
 
+/// Spacing and radius tokens based on a 4pt grid system.
+///
+/// All spacing values are multiples of the base unit (4pt). Access through `Styling.spacing`.
 public struct Spacing {
     private static let base: CGFloat = 4
     

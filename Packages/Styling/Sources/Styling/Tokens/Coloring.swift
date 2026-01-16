@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+/// Color tokens organized by usage: surfaces, text, and borders.
+///
+/// Colors are loaded from asset catalogs in the module bundle. Access through `Styling.coloring`.
 public struct Coloring {
     nonisolated(unsafe) public static let surface = Surface()
     nonisolated(unsafe) public static let text = TextColor()
@@ -15,6 +18,7 @@ public struct Coloring {
     public init() {}
 }
 
+/// Surface colors for backgrounds and containers.
 public struct Surface {
     public let primary = Color("Grey50", bundle: .module)
     public let secondary = Color("Grey100", bundle: .module)
@@ -30,6 +34,7 @@ public struct Surface {
 
 }
 
+/// Text colors for different text hierarchy levels and semantic states.
 public struct TextColor {
     public let primary = Color("Grey900", bundle: .module)
     public let secondary = Color("Grey500", bundle: .module)
@@ -39,6 +44,7 @@ public struct TextColor {
     public let brand = Color("Jade", bundle: .module)
 }
 
+/// Border colors for dividers and outlines.
 public struct Border {
     public let primary = Color("Grey300", bundle: .module)
     public let secondary = Color("Grey500", bundle: .module)

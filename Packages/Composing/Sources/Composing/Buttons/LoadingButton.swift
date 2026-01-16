@@ -1,5 +1,5 @@
 //
-//  ButtonVariant.swift
+//  LoadingButton.swift
 //  Composing
 //
 //  Created by Michael Tibollo on 2026-01-15.
@@ -8,6 +8,7 @@
 import SwiftUI
 import Styling
 
+/// Visual style variants for buttons, each with distinct colors and styling.
 public enum ButtonVariant: CaseIterable, Identifiable {
     public var id: Self { self }
 
@@ -17,10 +18,26 @@ public enum ButtonVariant: CaseIterable, Identifiable {
     case destructive
 }
 
-
+/// A button component with loading state support and automatic haptic feedback.
+///
+/// Automatically shows a progress indicator when `isLoading` is true and provides
+/// light impact haptic feedback on tap. Uses `LoadingButtonStyle` for styling.
+///
+/// Usage:
+/// ```swift
+/// LoadingButton(
+///     title: "Save",
+///     iconName: "square.and.arrow.down",
+///     isLoading: isSaving,
+///     variant: .primary
+/// ) {
+///     save()
+/// }
+/// ```
 public struct LoadingButton: View {
     
     @Environment(\.styling) private var styling
+    @Environment(\.hapticProvider) private var haptics
     
     let title: String
     let iconName: String?
@@ -43,7 +60,10 @@ public struct LoadingButton: View {
     }
 
     public var body: some View {
-        Button(action: action) {
+        Button {
+            haptics.provide(.impact(.light))
+            action()
+        } label: {
             ZStack {
                 ProgressView()
                     .opacity(isLoading ? 1 : 0)
@@ -66,5 +86,8 @@ public struct LoadingButton: View {
         }
         .buttonStyle(LoadingButtonStyle(variant: variant))
         .disabled(isLoading)
+        .accessibilityLabel(title)
+        .accessibilityHint(isLoading ? "Loading" : "Button")
+        .accessibilityAddTraits(.isButton)
     }
 }
