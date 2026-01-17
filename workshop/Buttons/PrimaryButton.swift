@@ -7,9 +7,11 @@
 
 import SwiftUI
 import Composing
+import Observation
 
-struct MyView: View {
+struct MyView2: View {
     @State private var loadingTask: Task<Void, Never>?
+    
     private var isLoading: Bool { loadingTask != nil }
 
 
@@ -44,6 +46,4 @@ struct MyView: View {
     }
 }
 
-#Preview {
-    MyView()
-}
+
