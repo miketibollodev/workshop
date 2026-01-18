@@ -11,8 +11,14 @@ import Observation
 
 struct MyView2: View {
     @State private var loadingTask: Task<Void, Never>?
+    @Capitalized var testingVar: String
     
     private var isLoading: Bool { loadingTask != nil }
+    
+    init(loadingTask: Task<Void, Never>? = nil) {
+        self.loadingTask = loadingTask
+        self._testingVar = Capitalized(wrappedValue: "d")
+    }
 
 
     var body: some View {

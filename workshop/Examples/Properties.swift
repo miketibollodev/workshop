@@ -112,3 +112,29 @@ import Composing
         self.maxLength = maxLength
     }
 }
+
+/// When a property wrapper is used, the compiler generates both the *wrapped value* and a *backing
+/// storage property*. For example, `@Capitalized var myString: String` generates the following:
+///
+/// ```
+/// var myString: String
+///
+/// private var _myString: Capitalized<String>
+/// ```
+///
+/// So, whenever we see an underscore-prefixed property, it is accessing the wrapper itself and not the wrapped
+/// value. The following two lines in the `init` code would be the exact same thing:
+///
+struct SomeView: View {
+    @Capitalized private var titleString: String
+    
+    init(titleString: String, maxLength: Int) {
+        self._titleString = .init(wrappedValue: titleString, maxLength: maxLength)
+        self._titleString = Capitalized(wrappedValue: titleString, maxLength: maxLength) // same thing
+    }
+    
+    var body: some View {
+        Text(titleString)
+    }
+}
+
