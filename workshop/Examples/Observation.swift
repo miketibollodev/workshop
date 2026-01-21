@@ -9,10 +9,9 @@ import SwiftUI
 import Observation
 import Composing
 
-
 ///
 /// `@Observable` is a macro that can *only be applied to classes* as part of the
-/// `Observation` framework. It replaces the old patten of `@ObservableObject`,
+/// `Observation` framework. It replaces the old pattern of `@ObservableObject`,
 /// `@EnvironmentObject`, and `@StateObject`.
 ///
 /// As of iOS 17, `@State` can be used behind simple value types to tell views of the
@@ -29,18 +28,6 @@ class MyClass {
     }
 }
 
-///
-/// The environment has also simplified. Instead of using a key, SwiftUI assumes there will only
-/// ever be one instance of the class, so it looks for the instance of that type. If it was not provided,
-/// then the app will crash.
-///
-/// When accessing an object through`@Environment`, it only provides *read access*.
-///
-@Observable
-class MyEnvironmentClass {
-    public var primaryColor: Color = .green
-}
-
 struct MyView: View {
     @State var myClass: MyClass = .init()
     
@@ -55,10 +42,9 @@ struct MyView: View {
             
             MyReadOnlyView(total: myClass.total, isSelected: myClass.isSelected)
         }
-        .environment(MyEnvironmentClass())
-        
     }
 }
+
 
 ///
 /// `@Bindable` is used for `@Observable` classes instead of `@Binding`, when a class
@@ -83,23 +69,20 @@ struct MyNestedView: View {
     }
 }
 
+
 ///
 /// Views that are read-only can simply accept properties from a class. It won't cause the view
 /// to redraw or have any mutability. However, in `MyView`, due to `myClass` being used
 /// to pass `total` and `isSelected`, it will redraw when there is a change because it
 /// is observing those properties.
 ///
-/// We also access the environment through `@Environment`, calling the type that we want
-/// instead of a key, again, because it is assumed there exists only one.
-///
 struct MyReadOnlyView: View {
-    @Environment(MyEnvironmentClass.self) var myEnvironmentClass
     let total: Int
     let isSelected: Bool
     
     var body: some View {
         Text("Total: \(total)")
-            .foregroundStyle(isSelected ? .blue : myEnvironmentClass.primaryColor)
+            .foregroundStyle(isSelected ? .blue : .red)
     }
 }
 

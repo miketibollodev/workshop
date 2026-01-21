@@ -18,7 +18,7 @@ import SwiftUI
 ///     .foregroundColor(styling.coloring.text.primary)
 ///     .padding(styling.spacing.space4)
 /// ```
-public struct Styling : Sendable{
+public struct Styling: Sendable {
     public let coloring: Coloring.Type = Coloring.self
     public let typing: Typing.Type = Typing.self
     public let spacing: Spacing.Type = Spacing.self
