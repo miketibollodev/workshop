@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Styling
+import Theme
 
 /// Button style that applies variant-based colors, borders, and press animations.
 ///

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Styling
+import Theme
 
 /// Visual style variants for buttons, each with distinct colors and styling.
 public enum ButtonVariant: CaseIterable, Identifiable {

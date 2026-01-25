@@ -3,27 +3,27 @@
 import PackageDescription
 
 let package = Package(
-    name: "Composing",
+    name: "Components",
     platforms: [.iOS(.v26)],
     products: [
         .library(
-            name: "Composing",
-            targets: ["Composing"]
+            name: "Components",
+            targets: ["Components"]
         ),
     ],
     dependencies: [
-        .package(path: "../Styling")
+        .package(path: "../Theme")
     ],
     targets: [
         .target(
-            name: "Composing",
+            name: "Components",
             dependencies: [
-                "Styling"
+                "Theme"
             ]
         ),
         .testTarget(
-            name: "ComposingTests",
-            dependencies: ["Composing"]
+            name: "ComponentsTests",
+            dependencies: ["Components"]
         ),
     ]
 )

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Composing
+import Components
 import Observation
 
 struct MyView2: View {

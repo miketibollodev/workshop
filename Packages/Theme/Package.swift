@@ -3,17 +3,17 @@
 import PackageDescription
 
 let package = Package(
-    name: "Styling",
+    name: "Theme",
     platforms: [.iOS(.v26)],
     products: [
         .library(
-            name: "Styling",
-            targets: ["Styling"]
+            name: "Theme",
+            targets: ["Theme"]
         ),
     ],
     targets: [
         .target(
-            name: "Styling",
+            name: "Theme",
             resources: [
                 .process("Resources")
             ]
