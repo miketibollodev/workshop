@@ -15,11 +15,15 @@ struct RootContainer: View {
     var body: some View {
         TabView(selection: $router.selectedTab) {
             Tab("Home", systemImage: "house", value: TabDestination.home) {
-                MyHomeView()
+                NavigationContainer(parentRouter: router, tab: .home) {
+                    MyHomeView()
+                }
             }
             
             Tab("Profile", systemImage: "person", value: TabDestination.profile) {
-                MyHomeView()
+                NavigationContainer(parentRouter: router, tab: .profile) {
+                    MyHomeView()
+                }
             }
         }
     }
