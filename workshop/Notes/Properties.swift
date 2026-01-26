@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Composing
+import Components
 
 ///
 /// There are several types of properties. Properties are values that are associated with a particular

@@ -1,10 +1,10 @@
+////
+////  PrimaryButton.swift
+////  workshop
+////
+////  Created by Michael Tibollo on 2026-01-15.
+////
 //
-//  PrimaryButton.swift
-//  workshop
-//
-//  Created by Michael Tibollo on 2026-01-15.
-//
-
 import SwiftUI
 import Components
 import Observation
@@ -51,5 +51,4 @@ struct MyView2: View {
         try? await Task.sleep(nanoseconds: 2_000_000_000)
     }
 }
-
 

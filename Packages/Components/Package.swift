@@ -19,6 +19,9 @@ let package = Package(
             name: "Components",
             dependencies: [
                 "Theme"
+            ],
+            resources: [
+                .process("Resources")
             ]
         ),
         .testTarget(

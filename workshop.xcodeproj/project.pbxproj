@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4CADBCF72F198EA700A5D448 /* Styling in Frameworks */ = {isa = PBXBuildFile; productRef = 4CADBCF62F198EA700A5D448 /* Styling */; };
-		4CADBD282F19B41D00A5D448 /* Composing in Frameworks */ = {isa = PBXBuildFile; productRef = 4CADBD272F19B41D00A5D448 /* Composing */; };
 		4CAF8C772F18416900488CFA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4CAF8C762F18416900488CFA /* README.md */; };
+		4CE2D2372F26E97D00C203D7 /* Theme in Frameworks */ = {isa = PBXBuildFile; productRef = 4CE2D2362F26E97D00C203D7 /* Theme */; };
+		4CE2D2392F26E9E500C203D7 /* Components in Frameworks */ = {isa = PBXBuildFile; productRef = 4CE2D2382F26E9E500C203D7 /* Components */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,10 +37,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		4CADBD262F199D0100A5D448 /* Exceptions for "Packages" folder in "workshop" target */ = {
+		4CE2D2342F26E91700C203D7 /* Exceptions for "Packages" folder in "workshop" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Composing,
+				Components,
+				Theme,
 			);
 			target = 4CAF8C3D2F1837DE00488CFA /* workshop */;
 		};
@@ -50,7 +51,7 @@
 		4CADBCF22F198E8400A5D448 /* Packages */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				4CADBD262F199D0100A5D448 /* Exceptions for "Packages" folder in "workshop" target */,
+				4CE2D2342F26E91700C203D7 /* Exceptions for "Packages" folder in "workshop" target */,
 			);
 			path = Packages;
 			sourceTree = "<group>";
@@ -77,8 +78,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CADBD282F19B41D00A5D448 /* Composing in Frameworks */,
-				4CADBCF72F198EA700A5D448 /* Styling in Frameworks */,
+				4CE2D2392F26E9E500C203D7 /* Components in Frameworks */,
+				4CE2D2372F26E97D00C203D7 /* Theme in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,8 +151,8 @@
 			);
 			name = workshop;
 			packageProductDependencies = (
-				4CADBCF62F198EA700A5D448 /* Styling */,
-				4CADBD272F19B41D00A5D448 /* Composing */,
+				4CE2D2362F26E97D00C203D7 /* Theme */,
+				4CE2D2382F26E9E500C203D7 /* Components */,
 			);
 			productName = workshop;
 			productReference = 4CAF8C3E2F1837DE00488CFA /* workshop.app */;
@@ -621,13 +622,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4CADBCF62F198EA700A5D448 /* Styling */ = {
+		4CE2D2362F26E97D00C203D7 /* Theme */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Styling;
+			productName = Theme;
 		};
-		4CADBD272F19B41D00A5D448 /* Composing */ = {
+		4CE2D2382F26E9E500C203D7 /* Components */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Composing;
+			productName = Components;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

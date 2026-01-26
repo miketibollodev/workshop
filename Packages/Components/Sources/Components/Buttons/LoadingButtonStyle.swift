@@ -16,21 +16,21 @@ import Theme
 public struct LoadingButtonStyle: ButtonStyle {
         
     @Environment(\.isEnabled) private var isEnabled
-    @Environment(\.styling) private var styling
+    @Environment(\.tokens) private var tokens
     
     let variant: ButtonVariant
     
     public func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .foregroundStyle(textColor)
-            .padding(.horizontal, styling.spacing.space4)
-            .padding(.vertical, styling.spacing.space3)
+            .padding(.horizontal, tokens.space.space4)
+            .padding(.vertical, tokens.space.space4)
             .background(
-                RoundedRectangle(cornerRadius: styling.spacing.radius3)
+                RoundedRectangle(cornerRadius: 12)
                     .fill(backgroundColor(configuration.isPressed))
             )
             .overlay(
-                RoundedRectangle(cornerRadius: styling.spacing.radius3)
+                RoundedRectangle(cornerRadius: 12)
                     .stroke(borderColor(configuration.isPressed), lineWidth: 1)
             )
             .opacity(isEnabled ? 1.0 : 0.5)
@@ -48,46 +48,46 @@ public struct LoadingButtonStyle: ButtonStyle {
     
     private var textColor: Color {
         switch variant {
-        case .primary: styling.coloring.text.inverse
-        case .secondary: styling.coloring.text.brand
-        case .tertiary: styling.coloring.text.brand
-        case .destructive: styling.coloring.text.inverse
+        case .primary: tokens.color.text.inverse
+        case .secondary: tokens.color.text.brand
+        case .tertiary: tokens.color.text.brand
+        case .destructive: tokens.color.text.inverse
         }
     }
     
     private var backgroundColorDefault: Color {
         switch variant {
-        case .primary: styling.coloring.surface.brand
-        case .secondary: styling.coloring.surface.secondary
-        case .tertiary: styling.coloring.surface.primary
-        case .destructive: styling.coloring.surface.danger
+        case .primary: tokens.color.surface.brand
+        case .secondary: tokens.color.surface.secondary
+        case .tertiary: tokens.color.surface.primary
+        case .destructive: tokens.color.surface.danger
         }
     }
     
     private var backgroundColorPressed: Color {
         switch variant {
-        case .primary: styling.coloring.surface.brandSecondary
-        case .secondary: styling.coloring.surface.brandLight
-        case .tertiary: styling.coloring.surface.brandLight
-        case .destructive: styling.coloring.surface.dangerSecondary
+        case .primary: tokens.color.surface.brandSecondary
+        case .secondary: tokens.color.surface.brandTertiary
+        case .tertiary: tokens.color.surface.brandTertiary
+        case .destructive: tokens.color.surface.dangerSecondary
         }
     }
     
     private var borderColorDefault: Color {
         switch variant {
-        case .primary: styling.coloring.border.brand
-        case .secondary: styling.coloring.border.brand
+        case .primary: tokens.color.border.brand
+        case .secondary: tokens.color.border.brand
         case .tertiary: .clear
-        case .destructive: styling.coloring.border.danger
+        case .destructive: tokens.color.border.danger
         }
     }
     
     private var borderColorPressed: Color {
         switch variant {
-        case .primary: styling.coloring.border.brandSecondary
-        case .secondary: styling.coloring.border.brand
+        case .primary: tokens.color.border.brand
+        case .secondary: tokens.color.border.brand
         case .tertiary: .clear
-        case .destructive: styling.coloring.border.dangerSecondary
+        case .destructive: tokens.color.border.danger
         }
     }
 }

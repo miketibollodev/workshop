@@ -7,7 +7,7 @@
 
 import SwiftUI
 import Observation
-import Composing
+import Components
 
 ///
 /// `@Observable` is a macro that can *only be applied to classes* as part of the

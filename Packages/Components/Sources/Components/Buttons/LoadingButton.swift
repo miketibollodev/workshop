@@ -36,7 +36,7 @@ public enum ButtonVariant: CaseIterable, Identifiable {
 /// ```
 public struct LoadingButton: View {
     
-    @Environment(\.styling) private var styling
+    @Environment(\.tokens) private var tokens
     @Environment(\.hapticProvider) private var haptics
     
     let title: String
@@ -68,16 +68,16 @@ public struct LoadingButton: View {
                 ProgressView()
                     .opacity(isLoading ? 1 : 0)
                 
-                HStack(alignment: .center, spacing: styling.spacing.space2) {
+                HStack(alignment: .center, spacing: tokens.space.space2) {
                     Text(title)
-                        .font(styling.typing.label.large)
+                        .font(tokens.typography.label.large)
                     
                     if let iconName {
                         Image(systemName: iconName)
                             .resizable()
                             .frame(
-                                width: styling.spacing.space4,
-                                height: styling.spacing.space4
+                                width: tokens.space.space4,
+                                height: tokens.space.space4
                             )
                     }
                 }
