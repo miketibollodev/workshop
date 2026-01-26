@@ -13,7 +13,7 @@ import SwiftUI
 /// `Render As` and select `Preserve Vector Data` in `Resizing`. Then, add the resource
 /// in the correct enum by Style/Purpose.
 ///
-public enum Icons {
+public enum Icon {
     public enum Filled {
         public enum Action {
             public static let creditCard: ImageResource = .creditCard
