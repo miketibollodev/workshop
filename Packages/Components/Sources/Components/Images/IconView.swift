@@ -40,3 +40,7 @@ public struct IconView: View {
             .frame(iconSize.size)
     }
 }
+
+#Preview {
+    IconView(Icon.Filled.Navigation.arrowLeft, iconSize: .small)
+}
