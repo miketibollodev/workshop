@@ -13,4 +13,12 @@ public struct MyModel: Decodable, Hashable {
     public let longitude: Double
     public let name: String
     public let ownerId: UUID?
+    
+    public init() {
+        id = UUID()
+        latitude = 24.123
+        longitude = 104.213
+        name = "Name"
+        ownerId = nil
+    }
 }
