@@ -41,6 +41,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Components,
+				Models,
 				Theme,
 			);
 			target = 4CAF8C3D2F1837DE00488CFA /* workshop */;

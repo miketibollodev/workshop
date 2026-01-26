@@ -12,13 +12,17 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(path: "../Theme")
+        .package(path: "../Theme"),
+        .package(path: "../Navigation"),
+        .package(path: "../Models")
     ],
     targets: [
         .target(
             name: "Components",
             dependencies: [
-                "Theme"
+                "Theme",
+                "Navigation",
+                "Models"
             ],
             resources: [
                 .process("Resources")
