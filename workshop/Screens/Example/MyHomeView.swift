@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Components
 import Navigation
 import Models
 
@@ -23,9 +24,7 @@ struct MyHomeView: View {
                 Text("Push Destination")
             }
             
-            NavigationButton(sheet: .mySheetDestination(model: model)) {
-                Text("Sheet Destination")
-            }
+            LoadingButton(title: "Sheet Destination (Primary)", sheet: .mySheetDestination(model: model))
             
             NavigationButton(fullScreen: .myFullScreenDestination(model: model)) {
                 Text("Full Screen Destination")

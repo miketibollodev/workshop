@@ -9,6 +9,8 @@ import SwiftUI
 
 public struct StateView<ViewData: Equatable, LoadingContent: View, DataContent: View>: View {
     
+    /// Requires a `@Binding` to the `LoadingState` to track when changes occur. We want the state
+    /// to be owned by our parent view, not the `StateView`.
     @Binding var state: LoadingState<ViewData>
     @ViewBuilder var loadingContent: () -> LoadingContent
     @ViewBuilder var dataContent: (ViewData) -> DataContent
@@ -38,7 +40,7 @@ public struct StateView<ViewData: Equatable, LoadingContent: View, DataContent: 
                 dataContent(viewData)
 
             case let .error(error):
-                ErrorView()
+                ErrorView(error: error)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

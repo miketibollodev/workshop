@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Navigation
 
 public struct NavigationButton<Content: View>: View {
 

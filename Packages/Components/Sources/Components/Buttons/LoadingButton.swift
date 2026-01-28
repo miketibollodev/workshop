@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Navigation
 import Theme
 
 /// Visual style variants for buttons, each with distinct colors and styling.
@@ -36,6 +37,7 @@ public enum ButtonVariant: CaseIterable, Identifiable {
 /// ```
 public struct LoadingButton: View {
     
+    @Environment(Router.self) private var router
     @Environment(\.tokens) private var tokens
     @Environment(\.hapticProvider) private var haptics
     
@@ -43,7 +45,8 @@ public struct LoadingButton: View {
     let iconName: String?
     let isLoading: Bool
     let variant: ButtonVariant
-    let action: () -> Void
+    private let action: (() -> Void)?
+    private let destination: Destination?
     
     public init(
         title: String,
@@ -57,12 +60,80 @@ public struct LoadingButton: View {
         self.isLoading = isLoading
         self.variant = variant
         self.action = action
+        self.destination = nil
+    }
+    
+    public init(
+        title: String,
+        iconName: String? = nil,
+        isLoading: Bool = false,
+        variant: ButtonVariant = .primary,
+        destination: Destination
+    ) {
+        self.title = title
+        self.iconName = iconName
+        self.isLoading = isLoading
+        self.variant = variant
+        self.action = nil
+        self.destination = destination
+    }
+    
+    public init(
+        title: String,
+        iconName: String? = nil,
+        isLoading: Bool = false,
+        variant: ButtonVariant = .primary,
+        push destination: PushDestination
+    ) {
+        self.init(
+            title: title,
+            iconName: iconName,
+            isLoading: isLoading,
+            variant: variant,
+            destination: .push(destination)
+        )
+    }
+    
+    public init(
+        title: String,
+        iconName: String? = nil,
+        isLoading: Bool = false,
+        variant: ButtonVariant = .primary,
+        sheet destination: SheetDestination
+    ) {
+        self.init(
+            title: title,
+            iconName: iconName,
+            isLoading: isLoading,
+            variant: variant,
+            destination: .sheet(destination)
+        )
+    }
+    
+    public init(
+        title: String,
+        iconName: String? = nil,
+        isLoading: Bool = false,
+        variant: ButtonVariant = .primary,
+        fullScreen destination: FullScreenDestination
+    ) {
+        self.init(
+            title: title,
+            iconName: iconName,
+            isLoading: isLoading,
+            variant: variant,
+            destination: .fullScreen(destination)
+        )
     }
 
     public var body: some View {
         Button {
             haptics.provide(.impact(.light))
-            action()
+            if let destination {
+                router.navigate(to: destination)
+            } else {
+                action?()
+            }
         } label: {
             ZStack {
                 ProgressView()
