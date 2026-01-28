@@ -12,7 +12,7 @@ import Navigation
 @ViewBuilder func view(for destination: PushDestination) -> some View {
     switch destination {
     case let .myPushDestination(model):
-        MySampleView(myModel: model)
+        MySampleScreen(myModel: model)
     }
 }
 
@@ -20,7 +20,7 @@ import Navigation
     Group {
         switch destination {
         case let .mySheetDestination(model):
-            MySampleView(myModel: model)
+            MySampleScreen(myModel: model)
         }
     }
     .navigationBarTitleDisplayMode(.inline)
@@ -33,7 +33,7 @@ import Navigation
     Group {
         switch destination {
         case let .myFullScreenDestination(model):
-            MySampleView(myModel: model)
+            MySampleScreen(myModel: model)
         }
     }
     .addDismissButton()
