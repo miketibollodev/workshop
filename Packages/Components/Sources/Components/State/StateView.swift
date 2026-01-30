@@ -14,7 +14,7 @@ public struct StateView<ViewData: Equatable, LoadingContent: View, DataContent: 
     @Binding var state: LoadingState<ViewData>
     @ViewBuilder var loadingContent: () -> LoadingContent
     @ViewBuilder var dataContent: (ViewData) -> DataContent
-    var fetchData: () async throws -> ViewData
+    private var fetchData: () async throws -> ViewData
 
     public init(
         state: Binding<LoadingState<ViewData>>,
@@ -31,8 +31,7 @@ public struct StateView<ViewData: Equatable, LoadingContent: View, DataContent: 
     public var body: some View {
         Group {
             switch state {
-            case .idle,
-                 .loading:
+            case .idle, .loading, .disabled:
                 loadingContent()
                     .disabled(true)
 

@@ -13,7 +13,9 @@ import Navigation
 // MARK: - View Model
 
 protocol SampleViewActions: AnyObject {
-    func refresh() async
+    func refreshSimple() async throws
+    func refreshButton() async throws
+    func refreshNavigation() async throws -> [String]?
 }
 
 @Observable
@@ -33,18 +35,25 @@ class MySampleViewModel {
     func fetchData(model: MyModel) async throws -> [String] {
         return ["A", "B", "C", "D"]
     }
-    
-    func refreshData() async throws {
+}
+
+extension MySampleViewModel: SampleViewActions {
+    func refreshSimple() async throws {
         state = .loading
         try? await Task.sleep(nanoseconds: 2_000_000_000)
         state = .dataLoaded(["E", "F", "G", "H"])
         iteration += 1
     }
-}
-
-extension MySampleViewModel: SampleViewActions {
-    func refresh() async {
-        try! await refreshData()
+    
+    func refreshButton() async throws {
+        try? await Task.sleep(nanoseconds: 2_000_000_000)
+        state = .dataLoaded(["I", "J", "K", "L"])
+        iteration += 1
+    }
+    
+    func refreshNavigation() async throws -> [String]?  {
+        try? await Task.sleep(nanoseconds: 2_000_000_000)
+        return ["M", "N", "O", "P"]
     }
 }
 
@@ -74,6 +83,8 @@ struct MySampleScreen: View {
 
 struct MySampleView: View {
     
+    @Environment(Router.self) private var router
+    
     let data: [String]
     var actions: SampleViewActions?
     let iteration: Int
@@ -81,12 +92,25 @@ struct MySampleView: View {
     var body: some View {
         VStack {
             Text("ITERATION: \(iteration)")
+            
             ForEach(data, id: \.self) { text in
                 Text(text)
             }
             
             MySampleNestedView(
                 actions: actions
+            )
+            
+            LoadingButton(title: "Refresh (loading)") {
+                try await actions?.refreshButton()
+            }
+            
+            LoadingButton(
+                title: "Refresh (navigate)",
+                fetchData: { try await actions?.refreshNavigation() },
+                action: { data in
+                    router.navigate(to: .push(.myPushDestination(model: .init())))
+                }
             )
         }
     }
@@ -97,9 +121,9 @@ struct MySampleNestedView: View {
     var actions: SampleViewActions?
     
     var body: some View {
-        Button("Refresh the data") {
+        Button("Refresh (simple)") {
             Task {
-                await actions?.refresh()
+                try await actions?.refreshSimple()
             }
         }
     }

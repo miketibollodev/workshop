@@ -8,12 +8,60 @@
 import SwiftUI
 import Theme
 
-/// Button style that applies variant-based colors, borders, and press animations.
-///
-/// Used by `LoadingButton` to provide consistent styling. Each `ButtonVariant` maps
-/// to specific colors from the styling environment (background, text, border).
-/// Includes scale animation on press and opacity changes for disabled state.
-public struct LoadingButtonStyle: ButtonStyle {
+public enum ButtonVariant: CaseIterable, Identifiable {
+    public var id: Self { self }
+
+    case primary
+    case secondary
+    case tertiary
+    case destructive
+}
+
+internal struct ButtonBody: View {
+    
+    @Environment(\.hapticProvider) private var haptics
+    @Environment(\.tokens) private var tokens
+    
+    var variant: ButtonVariant
+    var title: String
+    var isLoading: Bool = false
+    var iconName: String?
+    var action: (() -> Void)?
+    
+    var body: some View {
+        Button {
+            haptics.provide(.impact(.light))
+            action?()
+        } label: {
+            ZStack {
+                ProgressView()
+                    .opacity(isLoading ? 1 : 0)
+                
+                HStack(alignment: .center, spacing: tokens.space.space2) {
+                    Text(title)
+                        .font(tokens.typography.label.large)
+                    
+                    if let iconName {
+                        Image(systemName: iconName)
+                            .resizable()
+                            .frame(
+                                width: tokens.space.space4,
+                                height: tokens.space.space4
+                            )
+                    }
+                }
+                .opacity(isLoading ? 0 : 1)
+            }
+        }
+        .buttonStyle(LoadingButtonStyle(variant: variant))
+        .disabled(isLoading)
+        .accessibilityLabel(title)
+        .accessibilityHint(isLoading ? "Loading" : "Button")
+        .accessibilityAddTraits(.isButton)
+    }
+}
+
+internal struct LoadingButtonStyle: ButtonStyle {
         
     @Environment(\.isEnabled) private var isEnabled
     @Environment(\.tokens) private var tokens

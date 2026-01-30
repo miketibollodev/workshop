@@ -24,7 +24,7 @@ struct MyHomeView: View {
                 Text("Push Destination")
             }
             
-            LoadingButton(title: "Sheet Destination (Primary)", sheet: .mySheetDestination(model: model))
+            BasicButton(title: "Sheet Destination (Primary)", sheet: .mySheetDestination(model: model))
             
             NavigationButton(fullScreen: .myFullScreenDestination(model: model)) {
                 Text("Full Screen Destination")

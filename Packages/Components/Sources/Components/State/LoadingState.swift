@@ -11,6 +11,7 @@ public enum LoadingState<Value>: Equatable where Value: Equatable {
     
     case idle
     case loading
+    case disabled
     case dataLoaded(_ value: Value)
     case error(_ error: Error)
     

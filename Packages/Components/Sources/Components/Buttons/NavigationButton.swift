@@ -8,6 +8,7 @@
 import SwiftUI
 import Navigation
 
+/// `NavigationButton` is a non-styled button designed to handle navigations when the desired view is not a styled button.
 public struct NavigationButton<Content: View>: View {
 
     @Environment(Router.self) private var router
