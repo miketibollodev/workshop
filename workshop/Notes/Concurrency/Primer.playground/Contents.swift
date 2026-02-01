@@ -47,6 +47,19 @@ func onTapEvent() {
     }
 }
 
+///
+/// The `task` modifier will execute asynchronous code when the view appears, while handling the cancellation of tasks
+/// when the view disappears.
+///
+struct AsyncView: View {
+    var body: some View {
+        Text("Hello")
+            .task {
+                // Some async code
+            }
+    }
+}
+
 
 ///
 /// # Concurrency
