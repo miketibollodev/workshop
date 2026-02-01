@@ -62,3 +62,28 @@ struct DownloadView: View {
         status = message
     }
 }
+
+
+///
+/// # Cancelling Tasks
+///
+struct CancelView: View {
+
+    @State private var downloadTask: Task<String, Never>?
+
+    var body: some View {
+        VStack {
+            Button("Download Data") {
+                downloadTask = Task {
+                    try? await Task.sleep(nanoseconds: 10_000_000_000)
+                    return "Download complete"
+                }
+            }
+
+            Button("Stop Task") {
+                downloadTask?.cancel()
+            }
+        }
+    }
+}
+
