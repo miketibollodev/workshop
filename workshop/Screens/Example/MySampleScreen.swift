@@ -83,8 +83,6 @@ struct MySampleScreen: View {
 
 struct MySampleView: View {
     
-    @Environment(Router.self) private var router
-    
     let data: [String]
     var actions: SampleViewActions?
     let iteration: Int
@@ -106,11 +104,9 @@ struct MySampleView: View {
             }
             
             LoadingButton(
-                title: "Refresh (navigate)",
+                title: "Refresh (Push)",
                 fetchData: { try await actions?.refreshNavigation() },
-                action: { data in
-                    router.navigate(to: .push(.myPushDestination(model: .init())))
-                }
+                push: { data in .myPushDestination(model: .init())}
             )
         }
     }

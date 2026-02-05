@@ -12,12 +12,14 @@ import Theme
 /// `LoadingButton` is designed to handle loading states for asynchronous work and chain navigations with a data fetch.
 public struct LoadingButton<ViewData>: View {
     
+    @Environment(Router.self) private var router
     @State private var isLoading: Bool
     
     let title: String
     let iconName: String?
     let variant: ButtonVariant
     
+    private var destinationBuilder: ((ViewData) -> Destination)?
     private var fetchData: () async throws -> ViewData?
     private var action: ((ViewData) -> Void)?
 
@@ -26,13 +28,15 @@ public struct LoadingButton<ViewData>: View {
         iconName: String? = nil,
         variant: ButtonVariant = .primary,
         fetchData: @escaping () async throws -> ViewData?,
-        action: @escaping (ViewData) -> Void,
-    ) where ViewData: Equatable {
+        destination builder: ((ViewData) -> Destination)? = nil,
+        action: ((ViewData) -> Void)? = nil
+    ) {
         self._isLoading = .init(initialValue: false)
         self.title = title
         self.iconName = iconName
         self.variant = variant
         self.fetchData = fetchData
+        self.destinationBuilder = builder
         self.action = action
     }
     
@@ -40,16 +44,72 @@ public struct LoadingButton<ViewData>: View {
         title: String,
         iconName: String? = nil,
         variant: ButtonVariant = .primary,
-        fetchData: @escaping () async throws -> Void
-    ) where ViewData == Void {
-        self._isLoading = .init(initialValue: false)
-        self.title = title
-        self.iconName = iconName
-        self.variant = variant
-        self.fetchData = fetchData
-        self.action = nil
+        fetchData: @escaping () async throws -> ViewData?
+    ) {
+        self.init(
+            title: title,
+            iconName: iconName,
+            variant: variant,
+            fetchData: fetchData,
+            destination: nil,
+            action: nil
+        )
     }
     
+    public init(
+        title: String,
+        iconName: String? = nil,
+        variant: ButtonVariant = .primary,
+        fetchData: @escaping () async throws -> ViewData?,
+        push builder: @escaping (ViewData) -> PushDestination,
+        action: ((ViewData) -> Void)? = nil
+    ) {
+        self.init(
+            title: title,
+            iconName: iconName,
+            variant: variant,
+            fetchData: fetchData,
+            destination: { .push(builder($0)) },
+            action: action
+        )
+    }
+    
+    public init(
+        title: String,
+        iconName: String? = nil,
+        variant: ButtonVariant = .primary,
+        fetchData: @escaping () async throws -> ViewData?,
+        sheet builder: @escaping (ViewData) -> SheetDestination,
+        action: ((ViewData) -> Void)? = nil
+    ) {
+        self.init(
+            title: title,
+            iconName: iconName,
+            variant: variant,
+            fetchData: fetchData,
+            destination: { .sheet(builder($0)) },
+            action: action
+        )
+    }
+    
+    public init(
+        title: String,
+        iconName: String? = nil,
+        variant: ButtonVariant = .primary,
+        fetchData: @escaping () async throws -> ViewData?,
+        fullScreen builder: @escaping (ViewData) -> FullScreenDestination,
+        action: ((ViewData) -> Void)? = nil
+    ) {
+        self.init(
+            title: title,
+            iconName: iconName,
+            variant: variant,
+            fetchData: fetchData,
+            destination: { .fullScreen(builder($0)) },
+            action: action
+        )
+    }
+
     public var body: some View {
         ButtonBody(
             variant: variant,
@@ -64,14 +124,14 @@ public struct LoadingButton<ViewData>: View {
     private func performFetchData() async {
         withAnimation { isLoading = true }
         
-        do {
-            if let data = try await fetchData() {
-                action?(data)
+        if let data = try? await fetchData() {
+            action?(data)
+            
+            if let destinationBuilder {
+                router.navigate(to: destinationBuilder(data))
             }
-        } catch {
-            print("Error on load: \(error.localizedDescription)")
         }
-        
+
         withAnimation { isLoading = false }
     }
 }
